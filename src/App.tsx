@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import "./styles/App.css"
 
 function App() {
   const [task, setTask] = useState("")
@@ -50,7 +51,7 @@ function App() {
   }
 
   return (
-    <div className="app" style={{ border: "4px solid brown", borderRadius: 10, padding: 10 }}>
+    <div className="app">
       <div className="task-manager">
         <h1 className="title" style={{ fontFamily: "sans-serif" }}>
           Task Manager
@@ -60,7 +61,7 @@ function App() {
           {completedTasks} of {totalCount} tasks completed.
         </p>
 
-        <button className="clear-button" type="button" onClick={handleClearCompleted}>
+        <button className="clear- button" type="button" onClick={handleClearCompleted}>
           Clear completed
         </button>
 
