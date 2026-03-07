@@ -50,63 +50,65 @@ function App() {
   }
 
   return (
-    <div style={{ border: "4px solid brown", borderRadius: 10, padding: 10 }}>
-      <h1 className="title" style={{ fontFamily: "sans-serif" }}>
-        Task Manager
-      </h1>
+    <div className="app" style={{ border: "4px solid brown", borderRadius: 10, padding: 10 }}>
+      <div className="task-manager">
+        <h1 className="title" style={{ fontFamily: "sans-serif" }}>
+          Task Manager
+        </h1>
 
-      <p style={{ fontFamily: "sans-serif" }}>
-        {completedTasks} of {totalCount} tasks completed.
-      </p>
+        <p className="total-counts" style={{ fontFamily: "sans-serif" }}>
+          {completedTasks} of {totalCount} tasks completed.
+        </p>
 
-      <button type="button" onClick={handleClearCompleted}>
-        Clear completed
-      </button>
-
-      <div className="input-task-row" style={{ display: "flex", gap: 5 }}>
-        <input
-          type="text"
-          placeholder="Type here"
-          value={task}
-          onChange={(e) => setTask(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") handleAddTask()
-          }}
-          className="task-input"
-          style={{ padding: 2 }}
-        />
-        <button type="button" className="addBtn" onClick={handleAddTask} style={{ padding: "2px 5px" }}>
-          Add
+        <button className="clear-button" type="button" onClick={handleClearCompleted}>
+          Clear completed
         </button>
+
+        <div className="input-task-row" style={{ display: "flex", gap: 5 }}>
+          <input
+            type="text"
+            placeholder="Type here"
+            value={task}
+            onChange={(e) => setTask(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") handleAddTask()
+            }}
+            className="task-input"
+            style={{ padding: 2 }}
+          />
+          <button type="button" className="add-button" onClick={handleAddTask} style={{ padding: "2px 5px" }}>
+            Add
+          </button>
+        </div>
+
+        <ul className="task-list">
+          {taskArr.map((t) => (
+            <li className="task-item" key={t.id}>
+              <input type="checkbox" checked={t.completed} onChange={() => handleToggleCompleted(t.id)} />
+
+              {editingId === t.id ? (
+                <input value={editingText} onChange={(e) => setEditingText(e.target.value)} />
+              ) : (
+                <span style={{ textDecoration: t.completed ? "line-through" : "none" }}>{t.text}</span>
+              )}
+
+              {editingId === t.id ? (
+                <button className="save-button" type="button" onClick={() => handleSaveEdit(t.id)}>
+                  Save
+                </button>
+              ) : (
+                <button className="edit-button" type="button" onClick={() => handleStartEdit(t)}>
+                  Edit
+                </button>
+              )}
+
+              <button className="delete-button" type="button" onClick={() => handleDeleteTask(t.id)}>
+                Delete
+              </button>
+            </li>
+          ))}
+        </ul>
       </div>
-
-      <ul>
-        {taskArr.map((t) => (
-          <li key={t.id}>
-            <input type="checkbox" checked={t.completed} onChange={() => handleToggleCompleted(t.id)} />
-
-            {editingId === t.id ? (
-              <input value={editingText} onChange={(e) => setEditingText(e.target.value)} />
-            ) : (
-              <span style={{ textDecoration: t.completed ? "line-through" : "none" }}>{t.text}</span>
-            )}
-
-            {editingId === t.id ? (
-              <button type="button" onClick={() => handleSaveEdit(t.id)}>
-                Save
-              </button>
-            ) : (
-              <button type="button" onClick={() => handleStartEdit(t)}>
-                Edit
-              </button>
-            )}
-
-            <button type="button" onClick={() => handleDeleteTask(t.id)}>
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul>
     </div>
   )
 }
