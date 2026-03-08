@@ -55,13 +55,15 @@ function App() {
       <div className="task-manager">
         <h1 className="title">Task Manager</h1>
 
-        <p className="total-counts">
-          {completedTasks} of {totalCount} tasks completed.
-        </p>
+        <div className="counts-and-clear">
+          <p className="total-counts">
+            {completedTasks} of {totalCount} tasks completed.
+          </p>
 
-        <button className="clear-button" type="button" onClick={handleClearCompleted}>
-          Clear completed
-        </button>
+          <button className="clear-button" type="button" onClick={handleClearCompleted}>
+            Clear completed
+          </button>
+        </div>
 
         <div className="input-task-row">
           <input
@@ -76,7 +78,7 @@ function App() {
             style={{ padding: 2 }}
           />
           <button type="button" className="add-button" onClick={handleAddTask}>
-            Add
+            + Add
           </button>
         </div>
 
