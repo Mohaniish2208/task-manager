@@ -1,15 +1,71 @@
 .app {
   display: flex;
   justify-content: center;
+  font-family: sans-serif;
+}
+
+.task-manager {
+  background-color: rgb(194, 211, 153);
   margin-top: 60px;
-  border: 4px solid burlywood;
+  border: 4px solid rgb(0, 0, 0);
   border-radius: 10px;
-  padding: 10px;
+  padding: 30px;
+}
+
+.title {
+  text-shadow: 2px 0px 4px #000;
+}
+
+.input-task-row {
+  display: flex;
+  gap: 10px;
 }
 
 .edit-button,
-clear-button,
-save-button,
-delete-button {
+.clear-button,
+.save-button,
+.delete-button,
+.add-button,
+.checkbox-button {
+  cursor: pointer;
+  padding: 5px 3px;
+}
+
+.clear-button {
+  margin-bottom: 5px;
+}
+
+.clear-button:hover {
+  margin-bottom: 5px;
+  background-color: rgb(102, 188, 176);
+  transition: 0.5s ease-in-out;
+  border-radius: 15px;
+}
+
+.task-input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.task-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 15px;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 0px;
+  border-bottom: 1px solid #ccc;
+}
+
+.task-item span {
+  flex: 1;
+}
+.checkbox-button {
   cursor: pointer;
 }

@@ -53,19 +53,17 @@ function App() {
   return (
     <div className="app">
       <div className="task-manager">
-        <h1 className="title" style={{ fontFamily: "sans-serif" }}>
-          Task Manager
-        </h1>
+        <h1 className="title">Task Manager</h1>
 
-        <p className="total-counts" style={{ fontFamily: "sans-serif" }}>
+        <p className="total-counts">
           {completedTasks} of {totalCount} tasks completed.
         </p>
 
-        <button className="clear- button" type="button" onClick={handleClearCompleted}>
+        <button className="clear-button" type="button" onClick={handleClearCompleted}>
           Clear completed
         </button>
 
-        <div className="input-task-row" style={{ display: "flex", gap: 5 }}>
+        <div className="input-task-row">
           <input
             type="text"
             placeholder="Type here"
@@ -77,7 +75,7 @@ function App() {
             className="task-input"
             style={{ padding: 2 }}
           />
-          <button type="button" className="add-button" onClick={handleAddTask} style={{ padding: "2px 5px" }}>
+          <button type="button" className="add-button" onClick={handleAddTask}>
             Add
           </button>
         </div>
@@ -85,7 +83,12 @@ function App() {
         <ul className="task-list">
           {taskArr.map((t) => (
             <li className="task-item" key={t.id}>
-              <input type="checkbox" checked={t.completed} onChange={() => handleToggleCompleted(t.id)} />
+              <input
+                className="checkbox-button"
+                type="checkbox"
+                checked={t.completed}
+                onChange={() => handleToggleCompleted(t.id)}
+              />
 
               {editingId === t.id ? (
                 <input value={editingText} onChange={(e) => setEditingText(e.target.value)} />
