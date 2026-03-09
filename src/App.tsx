@@ -52,8 +52,6 @@ function App() {
     setEditingText("")
   }
 
-  // const handleSaveButton =
-
   return (
     <div className="app">
       <div className="task-manager">
@@ -64,7 +62,11 @@ function App() {
             {completedTasks} of {totalCount} tasks completed.
           </p>
 
-          <button className="clear-button" type="button" onClick={handleClearCompleted}>
+          <button
+            className={`clear-button ${completedTasks > 0 ? "clear-button-glow" : ""}`}
+            type="button"
+            onClick={handleClearCompleted}
+          >
             Clear Completed
           </button>
         </div>

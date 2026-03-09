@@ -1,17 +1,29 @@
+body {
+  margin: 0;
+}
+
 .app {
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   font-family: sans-serif;
-  margin-top: 60px;
+  padding-top: 60px;
+  margin-top: 0;
+
+  background-image: url("../images/pexels-apasaric-1323712.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .task-manager {
   background-color: rgb(194, 211, 153);
-  border: 2px solid rgb(0, 0, 0);
+  border: 3px solid rgb(0, 0, 0);
   border-radius: 10px;
   padding: 30px;
   width: 420px;
   height: 520px;
+  box-shadow: 0 10px 70px 0 rgba(0, 0, 0, 0.7);
 }
 
 .title {
@@ -142,4 +154,18 @@
   padding-right: 5px;
   height: 14px;
   width: 14px;
+}
+
+.clear-button-glow {
+  animation: clearGlow 1.1s ease-in-out infinite alternate;
+}
+
+@keyframes clearGlow {
+  from {
+    background-color: rgb(245, 245, 220);
+  }
+  to {
+    color: #ccc;
+    background-color: rgb(48, 81, 70);
+  }
 }
