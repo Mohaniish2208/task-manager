@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react"
+import penIcon from "./images/pen.png"
+import deleteIcon from "./images/delete.png"
 import "./styles/App.css"
 
 function App() {
@@ -35,20 +37,22 @@ function App() {
     setTaskArr((prev) => prev.filter((task) => !task.completed))
   }
 
-  const [editingId, seteditingId] = useState<number | null>(null) // task to be edited
+  const [editingId, setEditingId] = useState<number | null>(null) // task to be edited
   const [editingText, setEditingText] = useState("") // current input given
 
   const handleStartEdit = (task: { id: number; text: string }) => {
-    seteditingId(task.id)
+    setEditingId(task.id)
     setEditingText(task.text)
   }
 
   const handleSaveEdit = (id: number) => {
     setTaskArr((prev) => prev.map((task) => (task.id === id ? { ...task, text: editingText.trim() } : task)))
 
-    seteditingId(null)
+    setEditingId(null)
     setEditingText("")
   }
+
+  // const handleSaveButton =
 
   return (
     <div className="app">
@@ -61,59 +65,69 @@ function App() {
           </p>
 
           <button className="clear-button" type="button" onClick={handleClearCompleted}>
-            Clear completed
+            Clear Completed
           </button>
         </div>
 
-        <div className="input-task-row">
-          <input
-            type="text"
-            placeholder="Type here"
-            value={task}
-            onChange={(e) => setTask(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") handleAddTask()
-            }}
-            className="task-input"
-            style={{ padding: 2 }}
-          />
-          <button type="button" className="add-button" onClick={handleAddTask}>
-            + Add
-          </button>
+        <div className="input-main-section">
+          <div className="input-task-row">
+            <input
+              type="text"
+              placeholder="Type here"
+              value={task}
+              onChange={(e) => setTask(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") handleAddTask()
+              }}
+              className="task-input"
+            />
+            <button type="button" className="add-button" onClick={handleAddTask}>
+              + Add
+            </button>
+          </div>
+
+          <ul className="task-list">
+            {taskArr.map((t) => (
+              <li className="task-item" key={t.id}>
+                <input
+                  className="checkbox-button"
+                  type="checkbox"
+                  checked={t.completed}
+                  onChange={() => handleToggleCompleted(t.id)}
+                />
+
+                {editingId === t.id ? (
+                  <input
+                    className="edit-input"
+                    value={editingText}
+                    onChange={(e) => setEditingText(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") return handleSaveEdit(t.id)
+                    }}
+                  />
+                ) : (
+                  <span className={t.completed ? "task-text completed" : "task-text"}>{t.text}</span>
+                )}
+
+                {editingId === t.id ? (
+                  <button className="save-button" type="button" onClick={() => handleSaveEdit(t.id)}>
+                    Save
+                  </button>
+                ) : (
+                  <button className="edit-button" type="button" onClick={() => handleStartEdit(t)}>
+                    <img className="pen-icon" src={penIcon} alt="Edit" />
+                    Edit
+                  </button>
+                )}
+
+                <button className="delete-button" type="button" onClick={() => handleDeleteTask(t.id)}>
+                  <img className="delete-icon" src={deleteIcon} alt="Delete" />
+                  Delete
+                </button>
+              </li>
+            ))}
+          </ul>
         </div>
-
-        <ul className="task-list">
-          {taskArr.map((t) => (
-            <li className="task-item" key={t.id}>
-              <input
-                className="checkbox-button"
-                type="checkbox"
-                checked={t.completed}
-                onChange={() => handleToggleCompleted(t.id)}
-              />
-
-              {editingId === t.id ? (
-                <input value={editingText} onChange={(e) => setEditingText(e.target.value)} />
-              ) : (
-                <span style={{ textDecoration: t.completed ? "line-through" : "none" }}>{t.text}</span>
-              )}
-
-              {editingId === t.id ? (
-                <button className="save-button" type="button" onClick={() => handleSaveEdit(t.id)}>
-                  Save
-                </button>
-              ) : (
-                <button className="edit-button" type="button" onClick={() => handleStartEdit(t)}>
-                  Edit
-                </button>
-              )}
-
-              <button className="delete-button" type="button" onClick={() => handleDeleteTask(t.id)}>
-                Delete
-              </button>
-            </li>
-          ))}
-        </ul>
       </div>
     </div>
   )
