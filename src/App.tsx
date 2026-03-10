@@ -11,8 +11,9 @@ function App() {
   })
 
   const handleAddTask = () => {
-    if (task.trim() === "") return
-    setTaskArr((prev) => [...prev, { id: Date.now(), text: task.trim(), completed: false }]) // task.trim() resets the blank spaces
+    const formattedText = handleCaps(task)
+    if (formattedText === "") return
+    setTaskArr((prev) => [...prev, { id: Date.now(), text: formattedText, completed: false }]) // task.trim() resets the blank spaces
     setTask("")
   }
 
@@ -46,10 +47,16 @@ function App() {
   }
 
   const handleSaveEdit = (id: number) => {
-    setTaskArr((prev) => prev.map((task) => (task.id === id ? { ...task, text: editingText.trim() } : task)))
+    setTaskArr((prev) => prev.map((task) => (task.id === id ? { ...task, text: handleCaps(editingText) } : task)))
 
     setEditingId(null)
     setEditingText("")
+  }
+
+  const handleCaps = (text: string) => {
+    const trimmedText = text.trim()
+    if (!trimmedText) return ""
+    return trimmedText.charAt(0).toUpperCase() + trimmedText.slice(1)
   }
 
   return (
