@@ -2,6 +2,10 @@
 
 A simple task management app built with React, TypeScript, and Vite.
 
+## Screenshots
+
+-[Checkbox Clicked](src/Screenshots/Checkbox clicked.png)
+
 ## Overview
 
 This project lets you create, manage, and track daily tasks in a clean card-based UI. Tasks are saved in browser `localStorage`, so your list stays available after refresh.
