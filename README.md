@@ -4,7 +4,7 @@ A simple task management app built with React, TypeScript, and Vite.
 
 ## Screenshots
 
--![Checkbox Clicked](Task-Manager-Main.png)
+- ![Checkbox Clicked](Task-Manager-Main.png)
 
 ## Overview
 
