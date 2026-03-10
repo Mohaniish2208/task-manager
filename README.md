@@ -10,6 +10,7 @@ A simple task management app built with React, TypeScript, and Vite.
 
 #### Checkbox Clicked.
 
+![Checkbox Clicked](src/Screenshots/Checkbox-clicked.png)
 
 ## Overview
 
