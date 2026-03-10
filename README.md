@@ -45,8 +45,6 @@ task-manager/
     main.tsx                # React app entry point
     styles/App.css          # App styling
     images/                 # Background and button icons
-    components/             # Present but currently empty
-    types/task.ts           # Task type definition (currently unused by App.tsx)
   public/
   index.html
   package.json
