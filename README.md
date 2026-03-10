@@ -94,3 +94,7 @@ npm run lint
 
 - The current task state in `App.tsx` uses `{ id: number; text: string; completed: boolean }`
 - `src/types/task.ts` defines a different shape (`id: string`, `title: string`) and is not yet wired into `App.tsx`
+
+## Links
+
+- [CodeSandBox](https://codesandbox.io/p/github/Mohaniish2208/task-manager/main?workspaceId=ws_QuyUBcubhh91f2xBfZ1hab)
